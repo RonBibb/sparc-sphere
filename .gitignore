@@ -84,3 +84,5 @@ scripts/forced_two_sphere.py
 scripts/mom_disturbance.py
 scripts/mom_within_domain.py
 scripts/velfield_harmonic.py
+data/bh_*.csv
+data/vdb16_*.csv
