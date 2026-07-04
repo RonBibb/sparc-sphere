@@ -1,0 +1,86 @@
+# ============================================================
+# halo-spheres — .gitignore for the public reproducibility repo
+# ============================================================
+
+# --- Python environment / caches (never commit) ---
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# --- macOS junk ---
+.DS_Store
+
+# --- Editor / backup clutter (never ship) ---
+*.bak
+*~
+*.swp
+
+# --- LaTeX build artifacts ---
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+# NOTE: the compiled PDF is intentionally NOT ignored — see draft/.
+#       If you prefer a source-only repo, add: draft/*.pdf
+
+# --- Working notes (internal: speculative framework, staging docs,
+#     scratch files, superseded drafts). Kept local, OUT of the public
+#     archive so the repo is the clean reproducibility package only. ---
+_working_notes/
+
+# ============================================================
+# EXTERNAL / THIRD-PARTY DATA — excluded from the public archive.
+# We do NOT redistribute survey data (THINGS, HALOGAS, van den Bosch
+# BH catalog) or downloaded third-party source. The repo ships the
+# FETCH SCRIPTS (fetch.sh) + .par files + DERIVED products (CSV/txt
+# rotation curves and analysis tables) so the work is reproducible
+# without rehosting other groups' data.
+#
+# Convention: anything under a data/external/ folder is third-party.
+# ============================================================
+data/external/
+program2/data/external/
+
+# Safety net — catch raw survey data by type anywhere in the tree,
+# in case a file lands outside an external/ folder:
+*.FITS
+*.fits
+*.fits.gz
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# Heavy raw-cube / downloaded-source directories (kept local;
+# fetch scripts reproduce them):
+program2/data/halogas_cubes/
+program2/data/things_cubes/*.FITS
+program2/data/things_cubes/out_*/maps/
+program2/data/things_cubes/out_*/pvs/
+program2/data/iorio_src/
+program2/data/vla_angst/*.fits
+program2/data/vla_angst/*.fits.gz
+
+# Scraping / fetch byproducts
+rc_page.html
+page_chunk.json
+
+# ============================================================
+# Track-2 FRAMEWORK work (speculative; never in the public letter repo)
+# ============================================================
+program2/framework/
+# Framework/exploration scripts that live in scripts/ but are NOT letter
+# reproduction code (kept local; belong to halo-spheres-future-work):
+scripts/forced_two_sphere.py
+scripts/mom_disturbance.py
+scripts/mom_within_domain.py
+scripts/velfield_harmonic.py

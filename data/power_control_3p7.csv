@@ -1,0 +1,4 @@
+galaxy,n,rmax_kpc,feat_resid_kms,detect_floor_kms,med_err_kms,uninformative
+NGC2841,21,44.1,21.0,12.6,8.8,False
+NGC3521,21,23.0,47.4,18.9,6.2,False
+NGC1003,14,30.4,3.3,7.2,3.0,True

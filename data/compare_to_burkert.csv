@@ -1,0 +1,6 @@
+galaxy,n_pts,n_pts_sweep,burk_chi2red,burk_bic,tiers_N,tiers_chi2red,tiers_bic,shells_n,shells_chi2red,shells_bic,BIC_winner
+NGC2841,50,50,7.0,343.9,2,0.88,56.3,2,0.37,47.0,Burk+shells
+NGC2403,73,73,19.03,1359.8,2,3.3,244.6,2,0.72,81.0,Burk+shells
+NGC3521,41,41,0.79,38.4,2,0.1,18.4,1,0.06,20.8,tiers
+NGC5055,22,22,9.53,196.8,1,9.53,196.8,2,0.53,32.1,Burk+shells
+NGC6946,55,55,1.19,71.2,1,1.19,71.2,2,0.38,50.0,Burk+shells
