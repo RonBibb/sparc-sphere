@@ -71,7 +71,7 @@ If you use this code or these data products, please cite the paper (reference to
 added on acceptance) and this archived release:
 
 > Bibb, R. 2026, sparc-sphere: reproducibility package (vX.Y.Z), Zenodo,
-> doi:10.5281/zenodo.XXXXXXXX
+> doi:10.5281/zenodo.21196421
 
 ## License
 See `LICENSE`.
