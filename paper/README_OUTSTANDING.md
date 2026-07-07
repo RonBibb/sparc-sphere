@@ -1,5 +1,13 @@
 # PAPER 2 (companion, "Bibb 2026b") — OUTSTANDING ITEMS LEDGER
-Created 2026-07-06. Current draft: halo_spheres_paper_draft_v0_8_12.tex.
+Created 2026-07-06. Current draft: halo_spheres_paper.tex (renamed from the
+v0_8_XX cascade 2026-07-06 — now on git 'companion' branch; history lives in
+commits, NOT filenames; edit in place + git diff, no new version-files).
+
+*** REPO MODEL [RB 07-06]: letter + companion share one repo. companion branch
+carries this paper; letter revisions on main (or letter branch). Submitted-letter
+state must stay tagged as the anchor for future letter fixes (branch-from-tag,
+not cherry-pick). revision_working/ copy of the letter is now REDUNDANT under
+the branch model — delete it; the branch is the working copy. ***
 
 *** TRIGGER [RB 07-06]: READY-ON-DESK-PASS. Companion must be submission-ready
 when AAS78771 passes ApJL desk review (days-scale, not report-scale). Desk-pass
@@ -39,13 +47,13 @@ gamma paper ~1 mo concurrent (mostly data labor); geometric paper sketch
 starting ~weekend — present as pure geometric structure, NO child-universe
 language, at most a single embedding-interpretations fence sentence.
 READINESS CHECKLIST:
-  [ ] 1. DATA-AVAILABILITY BLOCK — the one hard tex blocker (L~890, commented
-        TODO). Needs: release package incl. NEW artifacts the text now cites
-        (m121_fixed/freey10/freey20.csv, free_upsilon_bic_engine.py,
+  [ ] 1. DATA-AVAILABILITY BLOCK — the one hard tex blocker (commented TODO
+        after acknowledgments). Needs: release package incl. NEW artifacts the
+        text now cites (m121_fixed/freey10/freey20.csv, free_upsilon_bic_engine.py,
         forced_component_null.csv, einasto_free_alpha.csv) → GitHub tag →
         Zenodo DOI → fill block. If companion shares the letter repo, this is
         tag-and-mint. RB action: tag + mint; Claude action: draft block +
-        package inventory.
+        package inventory. STILL THE ONE HARD BLOCKER as of 07-06.
   [x] 2. Validation-architecture item — SATISFIED IN TABLE FORM (v0_8_12,
         Table tab:alternatives at Discussion head): alternative x test x
         outcome x ref, 11 rows incl. prior/threshold rows, shared-baseline
@@ -54,6 +62,12 @@ READINESS CHECKLIST:
   [ ] 3. Discussion de-dup pass (v0.9 item, report-independent).
   [ ] 4. VENUE — RB decision.
   [ ] 5. Freeze v0.9 → optional round-6 sim on frozen draft → done.
+  [ ] 6. WHEN LETTER CLEARS DESK (done — fired 07-06, "Seeking Reviewer"):
+        send personal thank-you to J.~Sellwood — for the THINGS fit-output
+        tar ball (16 galaxies incl. 2841/3521, 2026-06-12) AND the diagnostic
+        guidance on why those two are the hard warp cases. Two purposes: it's
+        earned, and he is THE natural arXiv-endorsement ask (see PREREQ ACTION
+        above). Warm, specific, short. Offer to share the companion when ready.
 NOT blockers (revision-response tier): bar covariate, soft-prior-in-k line,
 rho(r) inversion (response seed banked §3), alpha>0.5 rerun. ***
 
@@ -378,3 +392,20 @@ Each confirmed number promotes its item below; each confabulated one demotes it
       as in-preparation). Submission requires venue choice + Zenodo/GitHub
       release tag + data-availability DOI block check.
   Current draft: v0_8_11.
+2026-07-06 (eve)  ACKNOWLEDGMENTS strengthened in halo_spheres_paper.tex:
+  Sellwood & Spekkens named for the warp-aware NGC2841/3521 curves (tar ball
+  2026-06-12, THINGS cubes) that enabled sec:dataindep, + kinematic-modeling
+  guidance; Hazel personal thanks added. Letter's submitted acknowledgments
+  left as-is (mid-review); same strengthening staged in revision_working/ for
+  letter revision (now redundant under branch model — delete, use branch).
+  ORCID CHECK: 0009-0004-1153-2464 is CORRECT (verified orcid.org 2026-07-06
+  via RB screenshot). Earlier Claude concern about -2454 was STALE MEMORY,
+  wrong — do NOT "correct" the ORCID; it is right in both letter + companion.
+  AAS78771 STATE 07-06: editor ASSIGNED = Dr. Frederic Rasio; stage advanced
+  "Seeking Scientific Editor" -> editor assigned -> "Seeking Reviewer" =
+  DESK PASS CLEARED. Checklist above is now LIVE (was ready-hold). Companion
+  should reach submission-ready before the letter's referee report (~2-3 wk).
+  TERMINOLOGY STRAGGLERS (found 07-06, not yet fixed): Fig1 caption + sec:absorption
+  still say "two-sphere"/"sphere-domain" (pre-retitle survivors); everywhere else
+  swept to "two-domain". One-word fixes, do on next pass — a referee flags this.
+  Current draft: halo_spheres_paper.tex (companion branch).
