@@ -1,0 +1,21 @@
+FITSFILE    NGC_3198_RO_CUBE_THINGS.FITS
+THREADS     6
+3DFIT       true
+NRADII      25
+RADSEP      30
+VSYS        660.7
+XPOS        510.3
+YPOS        511.9
+VROT        150
+VDISP       10
+INC         71.5
+PA          215.0
+Z0          10
+FREE        VROT VDISP PA
+LTYPE       2
+FTYPE       2
+DISTANCE    13.8
+MASK        SEARCH
+WFUNC       2
+TWOSTAGE    true
+OUTFOLDER   out_NGC_3198

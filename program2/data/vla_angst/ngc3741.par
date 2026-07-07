@@ -1,0 +1,21 @@
+FITSFILE    NGC3741-nat-cube.fits
+THREADS     6
+3DFIT       true
+NRADII      24
+RADSEP      20
+VSYS        229.1
+XPOS        509.6
+YPOS        516.0
+VROT        40
+VDISP       8
+INC         64
+PA          44
+Z0          10
+FREE        VROT VDISP PA
+LTYPE       2
+FTYPE       2
+DISTANCE    3.21
+MASK        SEARCH
+WFUNC       2
+TWOSTAGE    true
+OUTFOLDER   out_NGC3741

@@ -1,0 +1,602 @@
+%% Draft v0.4 — 2026-06-10 (review pass 2: abstract compressed ~25%; intro
+%% reordered so the objection follows the question; "nested" softened; NEW
+%% Results subsection 3.5 = forced-fit internal null; Discussion null-morphology
+%% paragraph added; figure plan consolidated to one killer figure.
+%% Venue: ApJL primary, PASP fallback for series cohesion — decision still
+%% Target: ApJL. v0.5 adds data-independence (3.7) + shell-absorption (3.8).)
+%% v0.6 (2026-06-13, pass 4): 3.5 extended with forced-fit inner/outer scaling asymmetry
+%% (forced reproduces inner below-relation offset but NOT outer; outer-on-relation is the
+%% surviving discriminant); Discussion curve-fitting defense restructured to five properties
+%% (BIC distribution, forced collapse, scaling asymmetry, cross-method concordance, data
+%% independence). No claim made on inner-component displacement.
+%% Method-independent detection of residual radial structure in SPARC halos
+%% Target: ApJL (AASTeX v6.3.1). Letter format.
+%% STATUS: working draft. [TODO] marks unresolved items. Numbers frozen from
+%% halo-spheres/ analysis of 2026-06-05; see README.md in that folder.
+%% KNOWN FIX BEFORE SUBMISSION: sphere_vs_models.py vs-Burkert tie artifact
+%% (N=1 composite == single Burkert must score as a tie). Only 2-sphere-row
+%% numbers are quoted here, which are unaffected.
+
+\documentclass[twocolumn]{aastex631}
+
+\newcommand{\vflat}{V_{\rm flat}}
+\newcommand{\reff}{R_{\rm eff}}
+\newcommand{\dbic}{\Delta{\rm BIC}}
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{doi:#1}}
+\newcommand{\msun}{M_\odot}
+
+\shorttitle{Residual radial structure in SPARC halos}
+\shortauthors{Bibb}
+
+\begin{document}
+
+\title{Method-Independent Detection of Residual Radial Structure in SPARC
+Dark Matter Halos Beyond Single Smooth Equilibrium Profiles}
+
+\author[0009-0004-1153-2464]{Ron Bibb}
+\affiliation{Independent Researcher, Lilburn, GA, USA}
+\email{[TODO: contact email]}
+
+\begin{abstract}
+Single smooth equilibrium halo profiles leave statistically significant,
+radially organized residuals in roughly one third of SPARC rotation curves.
+We introduce a minimum-order radial-domain decomposition: the dark-matter
+contribution is approximated by a minimum-order sum of tiered cored support
+components (Burkert form), with the order selected by the Bayesian
+Information Criterion. Across 121 galaxies, 35\% robustly require a second
+radial domain --- a fraction unchanged when component scales are confined to
+the measured radii, a constraint that simultaneously collapses all
+three-domain solutions, and reproduced with an NFW backbone (37\%). The
+central result is convergence: galaxies requiring a second domain coincide
+with galaxies independently flagged by a localized Gaussian-shell
+decomposition (odds ratio 38; mass-adjusted 37.5), and the domain crossover
+radius tracks the independently fitted shell radius ($\rho = 0.73$,
+permutation $p = 0.004$, surviving half-light-radius control). Forced
+two-domain fits to single-domain galaxies collapse to degenerate
+configurations, providing an internal null. Where the structure is strong
+enough to test, the multi-domain selection reproduces on rotation curves
+re-derived from the original radio cubes by independent software --- decisively
+($\dbic = 121$ for NGC~2403) and at the same crossover radius --- establishing
+that it is a property of the galaxy, not of the fitting basis. In all 41
+two-domain systems the
+single-profile scale radius lies between the two domain scales (median
+factor 2.2): single smooth fits are systematically biased summaries, not
+merely incomplete ones. We interpret the second component as a method- and
+data-independent marker of a second radial support domain, make no claim about
+its three-dimensional geometry --- which rotation curves cannot constrain ---
+and remain agnostic as to its physical origin.
+\end{abstract}
+
+\keywords{Dark matter (353) --- Galaxy rotation curves (619) --- Galaxy dark
+matter halos (1880) --- Astrostatistics (1882)}
+
+%% ------------------------------------------------------------------
+\section{Introduction} \label{sec:intro}
+
+Rotation curves of late-type galaxies are conventionally decomposed into
+baryonic contributions plus a single smooth equilibrium dark matter halo,
+described by cuspy profiles motivated by $\Lambda$CDM simulations
+\citep[NFW;][]{Navarro1996}, observationally motivated cored profiles
+\citep[Burkert;][]{Burkert1995}, or intermediate forms
+\citep[Einasto;][]{Einasto1965}. The adequacy of a \emph{single} smooth
+profile is usually assessed only through global fit quality. Localized
+departures --- coherent residual features at particular radii --- have been
+discussed largely in connection with baryonic features
+\citep[``Renzo's rule'';][]{Sancisi2004}, but a systematic, model-agnostic
+census of whether single smooth halos suffice is lacking.
+
+In a companion analysis (Bibb 2026, Zenodo, \doi{10.5281/zenodo.20263016}) we modeled localized
+residual structure in SPARC \citep{Lelli2016} rotation curves with Gaussian
+mass shells superposed on a Burkert backbone, finding BIC-selected shells in
+roughly half the sample. The present Letter asks a deliberately minimal,
+complementary question: \emph{what is the minimum number of smooth,
+concentric, cored radial domains required by each rotation curve?} Because
+any sufficiently flexible component will absorb residuals --- so that
+inferred ``structure'' may reflect the chosen basis rather than the galaxy
+--- the credibility of either decomposition rests on validation. We therefore
+test the answer against the structurally unrelated shell decomposition,
+against mass-driven confounds, and against an internal forced-fit null.
+
+Three properties make the result reportable. First, it is robust: the
+multi-domain fraction is unchanged when components are forbidden from
+extrapolating beyond the measured radii, while unstable three-domain
+solutions are eliminated by the same constraint. Second, it is
+backbone-independent: NFW and Burkert nulls give the same fraction. Third,
+and most importantly, it is method-independent: two unrelated decompositions
+flag the same galaxies and localize structure to consistent radii, and this
+concordance is not explained by galaxy mass. We emphasize equally what the
+analysis does \emph{not} find, and we make no claim about the physical origin
+of the detected structure.
+
+%% ------------------------------------------------------------------
+\section{Data and Methods} \label{sec:methods}
+
+\subsection{Sample and baryonic model}
+
+We use the SPARC database \citep{Lelli2016}: [TODO: confirm final sample
+definition] 123 galaxies with $\geq 6$ rotation-curve points after quality
+cuts, of which 121 yield converged fits. Baryonic contributions adopt fixed
+mass-to-light ratios $\Upsilon_{\rm disk} = 0.5$ and $\Upsilon_{\rm bul} =
+0.7$ at $3.6\,\mu$m with the gas contribution at unity, combined with signed
+squares so that $V^2_{\rm bar} = V_{\rm gas}|V_{\rm gas}| + 0.5\,V_{\rm
+disk}|V_{\rm disk}| + 0.7\,V_{\rm bul}|V_{\rm bul}|$. Velocity uncertainties
+are floored at $1\,{\rm km\,s^{-1}}$. [TODO: state exclusion rule for points
+with $V^2_{\rm obs} \le V^2_{\rm bar}$, matching the companion paper.]
+
+\subsection{Minimum-order concentric-domain decomposition}
+\label{sec:tiers}
+
+The inferred dark-matter contribution is approximated by a minimum-order sum
+of cored radial support components of Burkert form,
+\begin{equation}
+V^2_{\rm DM}(r) = \sum_{i=1}^{N} V^2_{\rm B}(r;\,\rho_{0,i},\,a_i),
+\end{equation}
+subject to ordering constraints that enforce a tiered structure and break
+exchange degeneracies: $\rho_{0,i}$ strictly decreasing and $a_i$ strictly
+increasing outward. A soft prior ties the total enclosed dark mass at the
+outermost measured point to the dynamically inferred value. Fits use bounded
+nonlinear least squares with 20--24 random restarts; model order is selected
+by ${\rm BIC} = \chi^2 + 2N \ln n_{\rm pts}$, evaluated for $N = 1$--$4$.
+At $N = 1$ the model reduces exactly to a single Burkert halo, providing the
+null hypothesis within the same machinery.
+
+Two variants are run. In the \emph{unconstrained} variant, scale radii are
+free. In the \emph{capped} variant, every component is required to satisfy
+$a_i \in [r_{\rm min}, r_{\rm max}]$, the measured radial range, so that no
+component's characteristic scale lies where there are no data. The cap is not
+a technical variant but a \emph{stability discriminator}: structure that
+survives it is resolved by the data, while structure that collapses is
+identified as extrapolation artifact. It thereby provides an internal
+falsification mechanism for each candidate domain.
+
+\subsection{Comparison methods}
+
+\emph{Gaussian-shell decomposition.} The companion method models localized
+residuals as Gaussian mass shells of center $r_s$, width $\sigma$, and mass
+$M_s$ on a single Burkert backbone, with shell count BIC-selected and a width
+constraint $\sigma/r \le 0.4$ that defines locality. The preferred fractional
+width is cap-invariant: the median $\sigma/r \simeq 0.22$ is unchanged as the
+allowed ceiling is raised from 0.4 to 1.0, with only 4\% of shells near the
+ceiling at a cap of 1.0. The shell and domain decompositions share data but
+use structurally unrelated basis functions --- a localized annular perturbation
+versus a global cored profile --- and are fit independently.
+
+\emph{Backbone generalization.} The minimum-order analysis of
+\S\ref{sec:tiers} is repeated with NFW and Einasto (fixed $\alpha = 0.16$,
+preserving two parameters per component for a fair BIC) in place of Burkert.
+
+%% ------------------------------------------------------------------
+\section{Results} \label{sec:results}
+
+\subsection{A robust two-domain population} \label{sec:twodomain}
+
+Table~\ref{tab:order} summarizes the BIC-selected model order.
+Unconstrained: 78/38/5 galaxies select $N = 1/2/3$ (64/31/4\%). Capped:
+79/41/0 (one galaxy selects $N = 4$). The multi-domain fraction is
+essentially unchanged, 36\% versus 35\%, and 95\% (41/43) of multi-domain
+galaxies retain $N \ge 2$ under the cap. By contrast, \emph{all five}
+three-domain solutions collapse: in every case the third component was an
+inner spike below the first measured point or an outer ramp beyond the last,
+i.e.\ extrapolation rather than measurement. The data support at most two
+resolved radial domains.
+
+The decision margins are strongly asymmetric. Where two domains win, they win
+decisively: median $\dbic = +43.3$ over the single profile, with 23/42 cases
+exceeding $+30$ and a maximum of $+1115$. Where the single profile wins, it
+never wins decisively: the median losing margin is $+4.8$, 81\% of losses are
+within $\dbic < 6$, and \emph{no} galaxy prefers a single Burkert by
+$\dbic > 10$. The single-domain population is therefore adequate rather than
+demanded, and the quoted 35\% should be read as threshold-dependent in the
+usual information-criterion sense.
+
+A direct consequence concerns what a single profile reports when two domains
+are present. In all 41 capped two-domain systems, the single-Burkert scale
+radius lies between the inner and outer domain scales, with a median
+$a_{\rm Burkert}/a_{\rm in} = 2.19$, indicating that a single smooth
+backbone compresses the two-domain structure into a biased intermediate scale
+rather than recovering the inner domain plus a residual correction. Smooth
+fits can therefore not only conceal radial structure but systematically bias
+inferred core scales, by a factor of $\sim$2 in this sample.
+
+\begin{deluxetable}{lcccc}
+\tablecaption{BIC-selected number of radial domains \label{tab:order}}
+\tablehead{\colhead{Variant} & \colhead{$N{=}1$} & \colhead{$N{=}2$} &
+\colhead{$N{=}3$} & \colhead{$N{\ge}2$ frac.}}
+\startdata
+Unconstrained & 78 & 38 & 5 & 36\% \\
+Capped ($a \in [r_{\rm min}, r_{\rm max}]$) & 79 & 41 & 0\tablenotemark{a} & 35\% \\
+NFW backbone (unconstrained) & 76 & 36 & 9 & 37\% \\
+Einasto backbone\tablenotemark{b} & 56 & 47 & 18 & 54\% \\
+\enddata
+\tablenotetext{a}{One galaxy selects $N = 4$.}
+\tablenotetext{b}{Fixed $\alpha = 0.16$; the rigid shape inflates the
+multi-domain fraction and should be read as a caveat on fixed-shape nulls,
+not as additional structure.}
+\end{deluxetable}
+
+\subsection{Backbone independence and comparison to single profiles}
+
+With an NFW backbone the multi-domain fraction is 37\%, statistically
+indistinguishable from the Burkert 36\%: the residual structure is not an
+artifact of fitting a cored profile to cuspy halos or vice versa. The fixed-%
+shape Einasto null returns 54\%, which we attribute to its inflexible inner
+slope at fixed $\alpha$ (Table~\ref{tab:order}, note b).
+
+For the 41 capped two-domain galaxies, the composite outperforms every
+single-profile alternative on BIC, including the parameter penalty: 41/41
+against a single Burkert, 29/41 against a single NFW, and 34/41 against a
+single Einasto. The residual structure is not absorbable by exchanging one
+smooth profile family for another.
+
+\subsection{Galaxy-level concordance with the shell method, controlling for
+mass} \label{sec:concordance}
+
+The central result is cross-method agreement. Of the 42 capped multi-domain
+galaxies, 39 are independently shell-bearing; of the 79 single-domain
+galaxies, 59 are shell-free (Fisher exact $p < 10^{-4}$; odds ratio 38;
+overall agreement 81\%).
+
+Because both structure indicators correlate with galaxy mass, we test
+whether the concordance is a mass artifact. In logistic regression for
+multi-domain selection with $\log M_\star$ as the base predictor, shell-%
+bearing status adds likelihood-ratio $\chi^2 = 49.7$ ($p < 10^{-4}$) ---
+an order of magnitude beyond any other covariate --- while $T$-type,
+effective surface brightness, $R_{\rm HI}$, gas fraction, and bulge presence
+(LR $\chi^2 = 0.01$, $p = 0.93$) are entirely absorbed by mass, and
+$\vflat$ contributes only weakly ($p = 0.013$). The bulge null additionally
+disarms the concern that the second component merely compensates for
+bulge--disk mass-to-light errors: if it did, bulge presence would predict
+multi-domain selection at fixed mass, and it does not. Stratifying into $\log M_\star$ tertiles, the shell--domain
+association holds within every bin (Fisher $p = 0.011$, $<10^{-4}$,
+$<10^{-4}$), and the Cochran--Mantel--Haenszel mass-adjusted odds ratio is
+37.5 --- indistinguishable from the raw 38. At fixed mass, shell-bearing
+galaxies are $\sim$37 times more likely to require a second radial domain.
+
+\subsection{Radial-level concordance} \label{sec:radial}
+
+Co-occurrence in the same galaxies could still mean the two methods describe
+different features. We therefore compare \emph{where} they place structure.
+For each capped two-domain galaxy we compute the crossover radius
+$r_\times$ at which the outer component's velocity contribution overtakes the
+inner, and compare it to the independently fitted shell radius (nearest
+shell; $n = 28$ galaxies host both).
+
+The two radii are strongly correlated: Spearman $\rho = 0.73$
+($p < 10^{-4}$), with a median fractional offset
+$|r_\times - r_s|/r_{\rm max} = 0.188$ against $0.387$ for permuted shell
+assignments (permutation $p = 0.0038$). Both quantities partly track the
+optical half-light radius ($\rho = 0.57$ for $r_\times$ vs.\ $\reff$), so we
+control for it: residualizing both radii on $\reff$, the shell--crossover
+correlation persists at partial $\rho = 0.62$ ($p = 4 \times 10^{-4}$). The
+two methods localize structure to common radii for reasons beyond a shared
+preference for the mid-disk. Notably, the capped fits show \emph{stronger}
+radial concordance than the unconstrained fits ($\rho = 0.73$ vs.\ $0.68$;
+permutation $p = 0.004$ vs.\ $0.047$), as expected if the cap removes
+extrapolated components that scatter the crossover radius.
+
+\subsection{An internal null: forced two-domain fits} \label{sec:forced}
+
+As an internal control, we force $N = 2$ fits on the 79 galaxies whose
+BIC-selected solution is single-domain. In 71/79 the added component yields
+negligible likelihood improvement ($\Delta\chi^2 < 2$); only 8/79 improve
+genuinely but fail the BIC penalty. The forced components collapse toward
+degenerate configurations: median $a_{\rm out}/a_{\rm in} = 1.16$, versus
+9.09 in selected two-domain systems ($p < 10^{-4}$), with the added
+component's density suppressed by $\sim$4 dex. Moreover, the inner--outer
+scale coupling present in selected systems survives control for galaxy size
+(partial $\rho = 0.56$, $p = 10^{-4}$), whereas in forced fits it vanishes
+(partial $\rho = 0.13$, $p = 0.25$). The decomposition therefore possesses an
+identifiable null morphology, distinct from the selected multi-domain
+population.
+
+A further property of the forced fits sharpens this null into a positive
+discriminant. Placing both the forced and the genuinely selected components
+against the single-domain halo $\rho_0$--scale relation --- built locally in
+$V_{\rm flat}$ to remove the mass-regime dependence --- the two component tiers
+behave asymmetrically under forcing. The \emph{inner} components of forced and
+selected fits are statistically indistinguishable in their displacement below the
+relation (Mann--Whitney $p = 0.10$): forcing any second component drives an inner
+term below the relation, so inner displacement alone is \emph{not} diagnostic of
+genuine structure, and we make no claim on it. The \emph{outer} components, by
+contrast, separate cleanly: in selected two-domain systems the outer component
+remains comparatively close to the single-domain locus (median $-0.95\sigma$),
+whereas in forced decompositions --- excluding degenerate fits that rail against
+parameter bounds --- it is driven far below it (median $-3.44\sigma$;
+Mann--Whitney $p = 2 \times 10^{-4}$, KS $p = 2 \times 10^{-4}$). Were the
+decomposition mere fitting freedom, both tiers would respond to forcing alike;
+instead one tier survives the forcing and the other does not. That asymmetry is
+itself evidence that the outer domain of a selected system tracks a genuine halo
+component rather than an artifact of adding parameters.
+
+\subsection{What does not predict the second domain} \label{sec:negatives}
+
+Three deliberately reported negative results bound the interpretation.
+
+\emph{No privileged scale ratio.} The capped outer/inner scale ratio has
+median $a_{\rm out}/a_{\rm in} \simeq 9$, but it does not correlate with the
+dimensionless structural ratios $R_{\rm HI}/R_{\rm d}$ or
+$r_{\rm max}/R_{\rm d}$ ($|\rho| \le 0.13$, $p > 0.4$); it correlates only
+with absolute size and mass. The absolute scales track the measured extent
+($a_{\rm out}$ vs.\ $r_{\rm max}$: $\rho = 0.80$). The decomposition scales
+with the galaxy; it does not identify a special radius ratio.
+
+\emph{No common surface-density manifold.} Pooled components follow a
+$\rho_0$--$a$ anticorrelation of slope $-1.29$, superficially resembling the
+constant surface-density relation \citep{Donato2009}, but inner and outer
+components occupy significantly different surface-density levels
+($\log \rho_0 a = 8.59$ vs.\ $7.98$; $p < 0.001$). The two tiers are not a
+single scaling law sampled twice.
+
+\emph{No gas-fraction signal at fixed mass.} Within mass tertiles,
+multi-domain and single-domain galaxies have indistinguishable gas fractions
+($p = 0.13$--$0.96$).
+
+%% ------------------------------------------------------------------
+\subsection{Reproduction on independently derived rotation curves} \label{sec:dataindep}
+
+The preceding tests establish that the second domain is independent of the
+fitting basis. They do not, by themselves, exclude the possibility that the
+structure originates in the specific rotation curves published by SPARC --- for
+example in a localized systematic of one velocity-field extraction. We therefore
+test the strongest form of independence available: whether the multi-domain
+selection reproduces when the rotation curve is re-derived from the original
+radio data cubes by independent software, holding the baryonic model fixed so
+that only the measured velocities change.
+
+For the dwarf control galaxies DDO~154 and DDO~168, asymmetric-drift-corrected
+circular-velocity curves derived by an independent group from the same survey
+cubes (3D forward-modeling; \citealt{Iorio2017}) reproduce the single-domain
+selection ($N=1$) in both cases. On the multi-domain side, we re-derived curves
+for NGC~2403 and NGC~3198 directly from public THINGS-class cubes using
+independent tilted-ring forward-modeling software, with geometry fixed to
+literature tilted-ring solutions. Both reproduce the multi-domain selection
+decisively: NGC~2403 selects $N=2$ at $\dbic = 121$ with the domain crossover at
+$1.9$~kpc (SPARC-based value $\sim 2.3$~kpc), and NGC~3198 selects $N=2$ at
+$\dbic = 55$. For NGC~2403 the independent curve also derives from different
+observations than those underlying the SPARC curve, strengthening the test.
+
+A subset of multi-domain galaxies could not be adjudicated by this route, for
+stated reasons rather than negative results: the discriminating structure falls
+at radii where moment-map velocities are beam-suppressed (NGC~3521, where the
+second-domain evidence lies inside $\sim 3.4$~kpc), or the host requires
+warp-aware deprojection that blind fixed-geometry fits cannot supply (NGC~2841),
+or the independent extraction recovers too few rings to test (NGC~1003). In each
+such case a power control --- fitting the SPARC velocities on the identical
+radial support and uncertainties --- confirms that the failure is one of test
+power, not a true non-reproduction; where the independent derivation has the
+sampling and resolution to test the structure, it agrees. We report these as
+instrument-limited and defer them to derivations with per-ring uncertainty
+propagation. The pattern across the adjudicable cases is uniform: three
+reproductions across three classes of independence (same cubes / different
+software, different observations, different telescope), with no case in which an
+adequately powered independent derivation contradicted the SPARC-based selection.
+
+%% ------------------------------------------------------------------
+\subsection{Relation to the shell decomposition: absorption by the domain model} \label{sec:absorption}
+
+The galaxy- and radius-level concordance of \S\ref{sec:concordance}--\ref{sec:radial}
+shows that the shell and domain methods flag the same galaxies at the same radii.
+A sharper question is whether the localized shells carry information \emph{beyond}
+the broad two-domain structure, or whether they are largely a localized
+re-parameterization of it. We test this directly by freezing the BIC-selected
+sphere-domain model of each galaxy and asking whether Gaussian shells, fit to the
+residual of that frozen model using the identical shell machinery and BIC penalty
+of the companion analysis, survive.
+
+They mostly do not. Among the capped two-domain galaxies, 21 of 28 shells that
+are selected against a single-Burkert backbone are absorbed once the second
+domain is modeled --- they no longer improve the fit beyond the BIC penalty.
+Population-wide, shell detections fall from 33 to 11 once the domain model is in
+place. Only three galaxies retain a shell at $\dbic > 10$ against the frozen
+two-domain backbone; in these, the surviving shell sits well away from the domain
+crossover, consistent with a genuinely localized feature distinct from the broad
+structure. The implication is twofold: most localized ``shells'' in the companion
+analysis are the broad two-domain structure expressed in a localized basis ---
+which is why a localized basis invites the objection that it merely improves the
+fit --- and the domain decomposition is the more economical description, with a
+small residual minority of genuinely localized features isolated for separate
+study.
+
+%% ------------------------------------------------------------------
+\section{Discussion} \label{sec:discussion}
+
+The evidential chain is: (1) a single smooth equilibrium profile ---
+whether NFW or Burkert --- leaves BIC-significant residual structure in
+$\sim$35\% of SPARC galaxies; (2) the structure is limited to two resolvable
+radial domains, with three-domain solutions exposed as extrapolation by the
+data-range constraint; (3) an unrelated localized-shell decomposition flags
+the same galaxies, and the association is untouched by mass control; (4) the
+two methods place structure at consistent radii, beyond both a permutation
+null and a generic mid-disk scale; (5) no other measured galaxy property
+predicts the second domain; (6) where the structure is strong enough to test,
+it reproduces on rotation curves re-derived from the original radio cubes by
+independent software, at the same radius; and (7) when the broad two-domain
+model is fit first, it absorbs the large majority of the localized shells,
+identifying them as the same structure in a localized basis rather than
+independent features.
+
+We emphasize what is and is not being claimed. The present analysis does not
+imply that galaxies physically contain discrete Burkert subhalos, and it does
+not claim decomposition \emph{uniqueness}. It claims decomposition
+\emph{convergence}: structurally independent decomposition bases repeatedly
+recover the same subset of galaxies as inconsistent with a single smooth
+equilibrium support profile. We accordingly interpret the second component as
+a \emph{marker of a second radial support domain}, not as a literal nested
+halo: the negative results of \S\ref{sec:negatives} argue specifically
+against reading the components as physical objects with preferred scale
+ratios or a shared structural relation. A preliminary non-parametric density
+inversion on a demonstration subset is consistent with this picture --- the
+freely fit $\rho(r)$ shows low-order curvature rather than fragmenting into
+features at arbitrary radii --- though we defer its quantitative development.
+
+A second boundary on interpretation is geometric and absolute. A rotation curve
+constrains only the enclosed-mass profile $M({<}r)$ through $V^2(r) = G
+M({<}r)/r$; it carries no information about how the mass producing a given
+$M({<}r)$ is arranged in angle or in the third dimension. A second radial domain,
+a spherical shell, a planar ring, a stream, a warp-induced redistribution, and a
+localized deposit are indistinguishable in $V(r)$ if they enclose the same mass
+within each radius. We therefore make no claim about the three-dimensional
+geometry of the detected structure: the components of our decomposition are
+radial mass-profile features, and the labels ``domain'' and ``shell'' denote
+parameterizations, not shapes. Discriminating a centrally concentrated from a
+localized geometry requires observables that carry angular information ---
+azimuthal structure in the velocity field or in resolved tracers --- and is
+deferred to analyses of that kind. The present claim is confined to what
+rotation curves can support: a reproducible, basis-independent feature in the
+enclosed-mass profile.
+
+The forced-fit control of \S\ref{sec:forced} makes the basis-flexibility
+question empirical. Forced two-domain fits to single-domain galaxies collapse
+toward degenerate same-scale, vanishing-density configurations with
+negligible likelihood gain; BIC-selected two-domain systems instead exhibit
+separated inner and outer scales with residual scale coupling at fixed galaxy
+size. The detected structure is therefore not a generic consequence of
+basis-function flexibility: the basis has a recognizable signature for
+``nothing here,'' and the selected population does not show it.
+
+Nor should single-domain galaxies be read as negative detections. The margin
+asymmetry of \S\ref{sec:twodomain} --- decisive multi-domain wins against
+uniformly marginal single-profile wins --- indicates heterogeneous structural
+complexity across the population: some systems clearly demand additional
+radial structure, while many are merely \emph{adequately} described by a
+single profile rather than positively inconsistent with further structure.
+Whether the detected structure's origin is baryonic (e.g.\ features
+propagated from the gas disk; \citealt{Sancisi2004}), kinematic, or a genuine
+property of the dark matter distribution is not determined here, and we
+decline to speculate. The single external fact available is that, at fixed
+mass, the second domain co-occurs with localized shell structure at odds
+ratio $\sim$37.
+
+We address directly the objection that a constrained multi-component fit might
+simply be an elaborate means of minimizing $\chi^2$, reproducible by any
+sufficiently flexible function such as a high-order polynomial. Five properties of
+the result bear on it, none of which a generic flexible fit possesses. First, the
+selection does not run away with complexity: under the data-range cap the
+population settles at 65\% single-domain, 35\% two-domain, and zero three-domain
+(\S\ref{sec:twodomain}), whereas a basis whose advantage were mere flexibility
+would consume the sample toward ever-higher order. Second, the forced-fit null
+(\S\ref{sec:forced}) shows the basis declines to manufacture a component where
+none is selected --- forced two-domain fits collapse, rail, and degenerate rather
+than improving smoothly; a polynomial does not refuse. Third, that same forced
+control resolves asymmetrically (\S\ref{sec:forced}): forcing reproduces the
+inner component's below-relation offset but cannot reproduce the outer
+component's, so part of the decomposition demonstrably tracks something a flexible
+fit cannot fake. Fourth, the cross-method concordance
+(\S\ref{sec:concordance}--\ref{sec:radial}) is independent of the fitting
+basis entirely: a structurally unrelated shell decomposition flags the same
+galaxies (mass-adjusted odds ratio 37.5) at approximately the same radii (the
+shell radius tracks the domain crossover at partial $\rho = 0.62$), which two
+analyses fitting noise with different bases would not do. Fifth, the
+data-independence test (\S\ref{sec:dataindep}) shows the selection reproduces on
+rotation curves re-derived from the original radio cubes by independent software,
+decisively and at the same radius. A $\chi^2$-minimizing re-parameterization has
+none of these five properties. The one place the curve-fitting concern does bite
+--- the inner component's displacement below the halo scaling relation, which
+forcing reproduces --- we therefore decline to interpret; the surviving scaling
+signal is the outer component's, not the inner's.
+
+Two limitations bound the claims. The concordant sample is modest
+($\sim$40 galaxies at the galaxy level; 28 at the radial level). The
+basis-independence and data-independence tests are partial: the former shares the
+data across methods, and the latter is currently established for the subset of
+galaxies whose curves can be re-derived from public cubes at sufficient quality,
+with several multi-domain systems instrument-limited and deferred
+(\S\ref{sec:dataindep}). Confirmation against independent tracers of the same
+galaxies [TODO: cross-reference the multi-tracer companion analysis] is the
+natural next test, and is also the route to the geometric discrimination that
+rotation curves cannot provide.
+
+%% ------------------------------------------------------------------
+\section{Conclusions} \label{sec:conclusions}
+
+A minimum-order concentric-domain decomposition of 121 SPARC rotation curves
+shows that $\sim$35\% of galaxies require a second radial domain beyond any
+single smooth equilibrium profile (NFW, Burkert, or Einasto), a result robust
+to confining all components within the measured radii --- a constraint that
+simultaneously eliminates all three-domain solutions as artifacts. The
+detection is method-independent: an unrelated Gaussian-shell decomposition
+identifies the same galaxies (mass-adjusted odds ratio 37.5) and consistent
+radii (partial $\rho = 0.62$ controlling for the half-light radius), and when
+the domain model is fit first it absorbs the majority of those shells,
+identifying them as the same structure in a localized basis. Where it can be
+tested, the selection is also data-independent: it reproduces on rotation curves
+re-derived from the original radio cubes by independent software, decisively and
+at the same radius. The
+component parameters do not organize on a privileged scale ratio or a common
+surface-density relation, and no galaxy property beyond mass and shell
+structure --- including bulge presence --- predicts the second domain. Where
+two domains are present, the single-profile scale radius is a biased
+compromise between the two domain scales (41/41 betweenness; median factor
+2.2), so smooth fits both conceal the structure and distort the inferred
+core scale. The residual radial structure concealed
+by single smooth halo fits is therefore real, bounded, reproducible on
+independent data, and --- as to its three-dimensional geometry and physical
+origin --- deliberately left open, to be addressed with observables that carry
+the angular information rotation curves lack.
+
+\begin{acknowledgments}
+[TODO: acknowledgments; SPARC database citation statement.]
+\end{acknowledgments}
+
+\software{numpy, scipy, pandas, astropy, matplotlib}
+
+%% [TODO: Data availability — Zenodo DOI for the halo-spheres analysis
+%% package (scripts, per-galaxy tables, figures).]
+
+\begin{thebibliography}{}
+\bibitem[Burkert(1995)]{Burkert1995} Burkert, A. 1995, ApJL, 447, L25
+\bibitem[Donato et al.(2009)]{Donato2009} Donato, F., Gentile, G., Salucci,
+P., et al. 2009, MNRAS, 397, 1169
+\bibitem[Einasto(1965)]{Einasto1965} Einasto, J. 1965, Trudy Astrofiz. Inst.
+Alma-Ata, 5, 87
+\bibitem[Di Teodoro \& Fraternali(2015)]{DiTeodoro2015} Di Teodoro, E.~M., \& Fraternali, F. 2015, MNRAS, 451, 3021
+\bibitem[Iorio et al.(2017)]{Iorio2017} Iorio, G., Fraternali, F., Nipoti, C., et al. 2017, MNRAS, 466, 4159
+\bibitem[Lelli et al.(2016)]{Lelli2016} Lelli, F., McGaugh, S.~S., \&
+Schombert, J.~M. 2016, AJ, 152, 157
+\bibitem[Navarro et al.(1996)]{Navarro1996} Navarro, J.~F., Frenk, C.~S., \&
+White, S.~D.~M. 1996, ApJ, 462, 563
+\bibitem[Walter et al.(2008)]{Walter2008} Walter, F., Brinks, E., de Blok, W.~J.~G., et al. 2008, AJ, 136, 2563
+\bibitem[Sancisi(2004)]{Sancisi2004} Sancisi, R. 2004, in IAU Symp. 220,
+Dark Matter in Galaxies, ed. S. Ryder et al. (San Francisco: ASP), 233
+\end{thebibliography}
+
+\end{document}
+
+%% ==================================================================
+%% FIGURE PLAN (not yet built — three figures, ApJL-typical):
+%%
+%% Fig 1: Two-panel. (a) N-distribution bar chart, unconstrained vs capped
+%%        side by side (data: tiered_spheres_full.csv, tiered_spheres_capped.csv).
+%%        (b) Win/loss margin asymmetry: histogram of dBIC for 2-domain wins
+%%        vs single-profile wins (data: capped_winloss.csv).
+%%        Existing: tiered_full_summary.png is the prototype for (a).
+%%
+%% Fig 2 (THE KILLER FIGURE): two panels that ARE the paper.
+%%        (a) shell-bearing x multi-domain fourfold contingency, per-mass-tertile
+%%            Fisher p annotated (cross-method agreement).
+%%        (b) forced vs selected fits in the (a_out/a_in, density-drop) plane:
+%%            forced pile at ratio~1/drop~4dex, winners separate at ratio~9/drop~1.8
+%%            (not basis flexibility). Data: forced_two_sphere.csv.
+%%        Together: "same galaxies" + "not flexibility" in one figure.
+%%
+%% Fig 3: One worked example galaxy (suggest NGC 6015 or NGC 2403): rotation
+%%        curve with single-Burkert fit, two-domain composite, and the
+%%        independent shell location marked — the whole letter in one panel.
+%%        Existing prototype: panels from panels_tiers_2and3.png.
+%%
+%% EVIDENCE MAP (claim -> source):
+%%   35% / robustness ......... tiered_spheres_full.csv, tiered_spheres_capped.csv
+%%   margins +43.3 / +4.8 ..... capped_winloss.csv, two_vs_one_margins.csv
+%%   NFW 37% / Einasto 54% .... tiered_multimodel.csv
+%%   41/41, 29/41, 34/41 ...... sphere_vs_models.py output (2-sphere rows only;
+%%                              tie artifact does not affect these rows)
+%%   OR 38 / CMH 37.5 ......... mass-control analysis (Test A/C session output)
+%%   LR chi2=49.7 ............. logistic regression session output
+%%   rho=0.73 / p=0.0038 ...... spatial_coincidence_capped.csv
+%%   partial rho=0.62 ......... R_eff-control session output
+%%   sigma/r cap-invariance ... shell sweep, caps 0.4-1.0 table
+%%   negatives ................ two_sphere_params.csv, organization analyses
+%%   41/41 betweenness, 2.19 .. ain_vs_burkert.csv (bulge_and_ain_tests.py)
+%%   bulge null LR chi2=0.01 .. bulge_and_ain_tests.py output
+%%   forced null (1.16 vs 9.09, partial rho 0.56 vs 0.13) .. forced_two_sphere.csv
+%% ==================================================================

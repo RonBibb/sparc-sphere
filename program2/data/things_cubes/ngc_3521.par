@@ -1,0 +1,21 @@
+FITSFILE    NGC_3521_RO_CUBE_THINGS.FITS
+THREADS     6
+3DFIT       true
+NRADII      25
+RADSEP      30
+VSYS        803.5
+XPOS        505.0
+YPOS        515.9
+VROT        150
+VDISP       10
+INC         72.7
+PA          339.8
+Z0          10
+FREE        VROT VDISP PA
+LTYPE       2
+FTYPE       2
+DISTANCE    10.7
+MASK        SEARCH
+WFUNC       2
+TWOSTAGE    true
+OUTFOLDER   out_NGC_3521

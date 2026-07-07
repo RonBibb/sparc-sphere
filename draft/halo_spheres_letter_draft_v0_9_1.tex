@@ -1,0 +1,263 @@
+%% halo_spheres_letter_draft_v0.9.1.tex
+%% ATOMIC LETTER (split from the v0.8 paper, 2026-07-04).
+%% v0.9.1: self-containment pass -- phenomenon stated as THIS Letter's own finding
+%%   (not 'companion paper shows'); companion cited only for the extended validation
+%%   program. Abstract trimmed under 250 words (DDO-controls clause moved to body only).
+%% Single self-contained claim: multi-domain radial structure in SPARC halos is
+%% REAL and reproduces on INDEPENDENTLY DERIVED rotation curves. Anchor = the
+%% independent-cube reproduction (NGC 2403, dBIC=121). The full method-independence
+%% and robustness program is deferred to the companion paper (v0.8).
+%% Letter discipline: one claim, one figure, humility boundary kept, everything else cited-out.
+
+\documentclass[twocolumn]{aastex701}
+
+\newcommand{\dbic}{\Delta{\rm BIC}}
+\providecommand{\doi}[1]{\href{https://doi.org/#1}{doi:#1}}
+\newcommand{\msun}{M_\odot}
+
+\shorttitle{Multi-domain SPARC halo structure reproduces on independent data}
+\shortauthors{Bibb}
+
+\begin{document}
+
+\title{Residual Radial Structure in SPARC Dark Matter Halos Reproduces on
+Independently Derived Rotation Curves}
+
+\author[0009-0004-1153-2464]{Ron Bibb}
+\affiliation{Independent Researcher, Lilburn, GA, USA}
+\email[show]{ronbibb@gmail.com}
+
+\begin{abstract}
+Single smooth equilibrium halo profiles (NFW, Burkert, Einasto) leave
+statistically significant, radially organized residuals in $\sim$35\% of SPARC
+rotation curves: a minimum-order concentric-domain decomposition, with model
+order selected by the Bayesian Information Criterion, requires a second cored
+radial domain in that fraction of galaxies. Such a detection could reflect the
+flexibility of the fitting basis or a localized systematic in one velocity-field
+extraction rather than a property of the galaxies. We report the decisive test of
+galaxy-intrinsic origin: whether the multi-domain selection reproduces when the
+rotation curve is re-derived from the original radio data cubes by independent
+software, holding the baryonic model fixed so that only the measured velocities
+change. It does. In four of five adjudicable multi-domain systems the selection
+recovers --- decisively for NGC~2403 ($\dbic = 121$, on a curve derived from
+different observations than the SPARC curve) and NGC~3198 ($\dbic = 55$), on a
+warp-aware curve for NGC~2841, and at lower significance on a
+different-telescope extraction for NGC~3741 --- with the crossover radius
+preserved. The one non-reproduction and one power-limited case are reported
+explicitly, and single-domain controls reproduce their single-domain selection.
+Because a rotation curve constrains only the enclosed-mass profile $M({<}r)$, we make
+no claim about the three-dimensional geometry or physical origin of the structure; the
+result is confined to a reproducible, data-independent feature in the enclosed-mass
+profile. A companion analysis (Bibb 2026b) presents the full method-independence and
+robustness program that further characterizes it.
+\end{abstract}
+
+\keywords{Dark matter (353) --- Galaxy rotation curves (619) --- Galaxy dark
+matter halos (1880) --- Astrostatistics (1882)}
+
+\section{Introduction} \label{sec:intro}
+
+Rotation curves of late-type galaxies are conventionally decomposed into
+baryonic contributions plus a single smooth equilibrium dark matter halo ---
+cuspy \citep[NFW;][]{Navarro1996}, cored \citep[Burkert;][]{Burkert1995}, or
+intermediate \citep[Einasto;][]{Einasto1965}. The adequacy of a single smooth
+profile is usually assessed only through global fit quality, and coherent
+residual features at particular radii have been discussed largely in connection
+with baryonic structure \citep[``Renzo's rule'';][]{Sancisi2004}. Applying a
+minimum-order concentric-domain decomposition to SPARC rotation curves
+\citep{Lelli2016} --- the dark-matter contribution approximated by the smallest number
+of cored radial mass components the data support --- we find that a second cored radial
+domain is required in $\sim$35\% of galaxies (\S\ref{sec:results}). A companion
+analysis (Bibb 2026b) establishes that this selection is robust to the fitting basis
+--- stable across NFW, Burkert, and free-shape Einasto backbones, recovered by a
+structurally unrelated Gaussian-shell decomposition at consistent radii, and not
+predicted by galaxy mass or other measured properties.
+
+Basis-independence, however, does not by itself exclude the possibility that the
+structure originates in the specific rotation curves published by SPARC --- for
+example in a localized systematic of one velocity-field extraction --- rather
+than in the galaxies. This Letter reports the single most stringent test of that
+possibility, and the strongest available evidence for galaxy-intrinsic origin:
+reproduction of the multi-domain selection on rotation curves re-derived from the
+original radio data cubes by independent software. A fit improvement on one
+published curve, however constrained the basis, does not predict the outcome of
+an independent velocity derivation from a different reduction or a different
+instrument; that this prediction succeeds is what distinguishes a property of the
+galaxy from a property of the parameterization. We state the atomic result --- the
+structure is real and data-independent --- and defer the full validation program
+to the companion paper.
+
+\section{Data and Methods} \label{sec:methods}
+
+\subsection{Sample, baryonic model, and decomposition}
+We use the SPARC database \citep{Lelli2016}, restricted to galaxies with quality
+flag $Q \le 2$ and at least six rotation-curve points after removing points
+interior to the first reliably measured radius (121 converged fits). Baryonic
+contributions adopt fixed mass-to-light ratios $\Upsilon_{\rm disk} = 0.5$ and
+$\Upsilon_{\rm bul} = 0.7$ at 3.6~$\mu$m with the gas contribution at unity,
+combined in signed squares; velocity uncertainties are floored at 1~km~s$^{-1}$.
+The inferred dark-matter contribution is approximated by a minimum-order sum of
+cored radial mass components of Burkert form, $V^2_{\rm DM}(r) = \sum_{i=1}^{N}
+V^2_{\rm B}(r;\rho_{0,i},a_i)$, with $\rho_{0,i}$ strictly decreasing and $a_i$
+strictly increasing outward. Model order is selected by ${\rm BIC} = \chi^2 + k
+\ln n_{\rm pts}$ \citep{Schwarz1978,Liddle2007}, $k = 2N$, over $N = 1$--$4$; at
+$N = 1$ the model reduces exactly to a single Burkert halo. The capped-fit stability
+variant and the full basis-independence program are detailed in the companion paper
+(Bibb 2026b); the present Letter applies the same selection procedure and reports its
+outcome directly.
+
+\subsection{Independent velocity re-derivation}
+The reproduction test holds the baryonic model and the decomposition machinery
+fixed and replaces only the measured rotation curve, re-deriving it from the
+original radio data cubes by independent software. For NGC~2403 and NGC~3198 we
+re-derive curves directly from public THINGS-class cubes using independent
+tilted-ring forward-modeling \citep[$^{3\rm D}$Barolo;][]{DiTeodoro2015}, with
+geometry fixed to literature tilted-ring solutions. For the strongly warped
+systems NGC~2841 and NGC~3521, a blind fixed-geometry extraction cannot test the
+feature; we instead use published warp-aware tilted-ring curves (DiskFit;
+Sellwood \& Spekkens, private communication) from the same THINGS cubes. For
+NGC~3741 we use an independent VLA-ANGST extraction \citep[a different telescope
+from the WSRT-based SPARC curve;][]{Walter2008}. Dwarf controls DDO~154 and
+DDO~168 use asymmetric-drift-corrected curves from an independent group
+\citep[3D forward-modeling;][]{Iorio2017}. Each galaxy's re-derived curve is
+passed through the identical selection procedure; a reproduction is a recovery of
+the same BIC-selected model order at a consistent crossover radius.
+
+\section{Results} \label{sec:results}
+
+\begin{figure}
+\includegraphics[width=\linewidth]{figures/fig1_composite.png}
+\caption{Representative two-domain decomposition (NGC~2403, SPARC). The observed
+rotation curve (points) and baryonic contribution (dotted) are shown with the
+best single-Burkert fit (dashed) and the BIC-selected two-domain composite (thick
+solid); the inner and outer cored components are shown individually (thin solid).
+The single profile cannot reproduce both the inner rise and the outer profile
+simultaneously, whereas the two-domain composite does ($\chi^2_\nu$ improving from
+$\simeq 19$ to $\simeq 3$). NGC~2403 is the anchor of the present Letter: the same
+two-domain selection recovers at $\dbic = 121$ on a rotation curve re-derived from
+the original radio cubes by independent software, and from different observations
+than those underlying the SPARC curve (\S\ref{sec:results}).
+\label{fig:worked}}
+\end{figure}
+
+The multi-domain phenomenon tested here has three properties, which we state briefly
+(the full robustness program is deferred to Bibb 2026b). A second radial domain is
+BIC-selected in $\sim$35\% of the 121 galaxies; the fraction is stable when components are
+confined to the measured radial range (which simultaneously eliminates all
+three-domain solutions as extrapolation); and where two domains are selected the
+decision is decisive (median $\dbic = +43$ over the single profile), whereas
+single-domain preferences are uniformly marginal (median losing margin $+4.8$; no
+galaxy prefers a single Burkert by $\dbic > 10$). Where two domains are present,
+the single-profile scale radius lies between the two domain scales in all cases
+(median factor $2.2$): a single smooth fit is a biased summary of the structure,
+not merely an incomplete one. Figure~\ref{fig:worked} shows NGC~2403 as a
+representative case.
+
+The central result of this Letter concerns whether that structure survives an
+independent velocity derivation. It does. NGC~2403 selects $N = 2$ at $\dbic =
+121$ with the domain crossover at 1.9~kpc (SPARC-based value $\simeq 2.3$~kpc),
+on a curve that also derives from different observations than those underlying the
+SPARC curve; NGC~3198 selects $N = 2$ at $\dbic = 55$. The warp-aware curve for
+NGC~2841 selects $N = 2$ at $\dbic = 11$ --- its earlier failure on a blind
+extraction is attributable to the warp suppressing the feature, which the
+warp-aware curve recovers. NGC~3741 reproduces at lower significance on the
+independent VLA-ANGST extraction, the modest signal-to-noise of this dwarf
+limiting the decision margin. The one non-reproduction, NGC~3521, prefers a
+single domain on its warp-aware curve ($\dbic = -7$ against two) and is reported
+as such; an injection--recovery power control confirms this verdict is
+informative rather than power-limited (the feature it would need to show perturbs
+the curve well above the detectable amplitude). A single system, NGC~1003, is
+genuinely instrument-limited --- its independent HALOGAS extraction yields only 14
+usable rings, and a power control shows the feature it would carry lies below the
+detectable amplitude --- so its non-reproduction is uninformative. The two
+single-domain controls, DDO~154 and DDO~168, reproduce their single-domain
+selection.
+
+The adjudicated tally is four reproductions (NGC~2403, NGC~3198, NGC~2841,
+NGC~3741) spanning three classes of independence (same cubes/different software,
+different observations, and different telescope), one honest non-reproduction
+(NGC~3521), one quantified power-limited case (NGC~1003), and two single-domain
+controls reproduced. Reproduction holds in four of the five adjudicable galaxies;
+the failure and the exclusion are reported explicitly rather than absorbed into an
+undifferentiated ``instrument-limited'' category. Because the re-derived
+velocities are an independent measurement of each galaxy --- in the strongest
+cases from different observations or a different telescope --- a recovery of the
+same model order at the same radius is evidence that the structure is a property
+of the galaxy rather than of the published curve or the fitting basis.
+
+\section{Discussion} \label{sec:discussion}
+
+We frame this reproduction as proof of principle rather than population-level
+validation: the adjudicable sample is small, limited by the subset of SPARC
+galaxies whose rotation curves can be re-derived from public cubes at sufficient
+quality. It establishes that the multi-domain selection \emph{can} reproduce under
+genuinely independent velocity derivation, not the rate at which it does across
+the full sample; the latter awaits wider cube availability. What it does establish
+is decisive for the interpretation of the phenomenon: the structure is not an
+artifact of the specific SPARC velocity extraction, because it survives when that
+extraction is replaced.
+
+A boundary on interpretation is geometric and absolute. A rotation curve
+constrains only the enclosed-mass profile $M({<}r)$ through $V^2(r) = G
+M({<}r)/r$; it carries no information about how the mass producing a given
+$M({<}r)$ is arranged in angle or in the third dimension. A second radial domain,
+a spherical shell, a planar ring, a stream, a warp-induced redistribution, and a
+localized deposit are indistinguishable in $V(r)$ if they enclose the same mass
+within each radius. We therefore make no claim about the three-dimensional
+geometry of the detected structure, and none about its physical origin --- whether
+baryonic \citep[e.g.\ features propagated from the gas disk;][]{Sancisi2004},
+kinematic, or a property of the dark matter distribution. The present claim is
+confined to what rotation curves can support: a reproducible, data-independent
+feature in the enclosed-mass profile. Discriminating a centrally concentrated from
+a localized geometry requires observables that carry angular information ---
+azimuthal structure in the velocity field or in resolved tracers --- and is
+deferred to analyses of that kind.
+
+The companion paper (Bibb 2026b) presents the full evidence that this structure is
+also \emph{method}-independent: its stability across three halo families, its
+concordance with an unrelated Gaussian-shell decomposition at consistent radii
+(mass-adjusted odds ratio $\sim$37), the forced-fit null that distinguishes
+selected structure from basis flexibility, the absorption of the localized shells
+by the broad two-domain model, and the negative results that bound the
+interpretation. The present Letter isolates the single element of that program
+that most directly answers ``is it real'': the structure reproduces on an
+independent measurement of the same galaxies.
+
+\section{Conclusions} \label{sec:conclusions}
+
+A minimum-order concentric-domain decomposition selects a second radial domain in
+$\sim$35\% of SPARC rotation curves. Where the structure is strong enough to test,
+that selection reproduces on rotation curves re-derived from the original radio
+data cubes by independent software --- in four of five adjudicable galaxies,
+decisively for NGC~2403 ($\dbic = 121$) and NGC~3198 ($\dbic = 55$), with the
+crossover radius preserved, and with the one non-reproduction and one
+power-limited case reported explicitly. The residual radial structure concealed by
+single smooth halo fits is therefore a property of the galaxies rather than of the
+published rotation curves or the fitting basis. As to its three-dimensional
+geometry and physical origin, the result is deliberately silent: a rotation curve
+constrains only the enclosed-mass profile, and those questions require observables
+that carry the angular information rotation curves lack.
+
+\begin{acknowledgments}
+We thank the SPARC team for making their database publicly available. This work
+made use of the Spitzer Photometry and Accurate Rotation Curves (SPARC) database
+\citep{Lelli2016}. This research was conducted independently, without
+institutional or grant support.
+\end{acknowledgments}
+
+\software{numpy, scipy, pandas, astropy, matplotlib}
+
+\begin{thebibliography}{}
+\bibitem[Burkert(1995)]{Burkert1995} Burkert, A. 1995, ApJL, 447, L25
+\bibitem[Di Teodoro \& Fraternali(2015)]{DiTeodoro2015} Di Teodoro, E.~M., \& Fraternali, F. 2015, MNRAS, 451, 3021
+\bibitem[Einasto(1965)]{Einasto1965} Einasto, J. 1965, Trudy Astrofiz. Inst. Alma-Ata, 5, 87
+\bibitem[Iorio et al.(2017)]{Iorio2017} Iorio, G., Fraternali, F., Nipoti, C., et al. 2017, MNRAS, 466, 4159
+\bibitem[Liddle(2007)]{Liddle2007} Liddle, A.~R. 2007, MNRAS, 377, L74
+\bibitem[Lelli et al.(2016)]{Lelli2016} Lelli, F., McGaugh, S.~S., \& Schombert, J.~M. 2016, AJ, 152, 157
+\bibitem[Navarro et al.(1996)]{Navarro1996} Navarro, J.~F., Frenk, C.~S., \& White, S.~D.~M. 1996, ApJ, 462, 563
+\bibitem[Schwarz(1978)]{Schwarz1978} Schwarz, G. 1978, Ann. Stat., 6, 461
+\bibitem[Sancisi(2004)]{Sancisi2004} Sancisi, R. 2004, in IAU Symp. 220, Dark Matter in Galaxies, ed. S. Ryder et al. (San Francisco: ASP), 233
+\bibitem[Walter et al.(2008)]{Walter2008} Walter, F., Brinks, E., de Blok, W.~J.~G., et al. 2008, AJ, 136, 2563
+\end{thebibliography}
+
+\end{document}

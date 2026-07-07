@@ -1,0 +1,52 @@
+NGC2841 THINGS MOM1, dB08 geometry # pixscale 1.5''/pix
+vels                               # vels/phot switch
+T  T                               # FITS I/O, vels in m/s
+'../../../data/things_pilot/NGC_2841_RO_MOM1_THINGS.FITS'                           # input velocity field
+None                               # velocity uncertainty map
+1  1  1024 1024                    # region: (xlow,ylow) & (xrange,yrange)
+12.0  152.60  0.719  6 1.5 # regrad, regpa, regeps, istepout, pixscale
+'OUT_2841/boot2841.out'              # output file
+F F F                              # PINNED
+149.21  0.650                # disk-fit best
+509.54  515.52               # disk-fit best
+F F 0.0 2                          # non-circular flow OFF (disk-only)
+T F                                # inner interpolation, radial flows
+F 630.90 1.0 25.0            # Vsys FIXED
+F F F F 90 0 0                     # warp OFF
+0.                                 # seeing correction
+-0.01 -0.01                        # smoothing lambdas
+T -50 200 -1.0   # UNCERTAINTIES: toggle, seed, nboot, junc
+T                                  # verbose
+3.0 0.0                            # min,max radii for noncirc (unused)
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+100.0
+110.0
+120.0
+130.0
+140.0
+150.0
+160.0
+170.0
+180.0
+190.0
+200.0
+210.0
+220.0
+230.0
+240.0
+250.0
+260.0
+270.0
+280.0
+290.0
+300.0
+310.0
+320.0

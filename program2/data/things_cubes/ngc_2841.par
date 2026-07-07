@@ -1,0 +1,21 @@
+FITSFILE    NGC_2841_RO_CUBE_THINGS.FITS
+THREADS     6
+3DFIT       true
+NRADII      25
+RADSEP      30
+VSYS        633.7
+XPOS        507.2
+YPOS        512.3
+VROT        150
+VDISP       10
+INC         73.7
+PA          152.6
+Z0          10
+FREE        VROT VDISP PA
+LTYPE       2
+FTYPE       2
+DISTANCE    14.1
+MASK        SEARCH
+WFUNC       2
+TWOSTAGE    true
+OUTFOLDER   out_NGC_2841

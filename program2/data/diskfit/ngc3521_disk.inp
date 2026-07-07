@@ -1,0 +1,43 @@
+NGC3521 THINGS MOM1, dB08 geometry # pixscale 1.5''/pix
+vels                               # vels/phot switch
+T  T                               # FITS I/O, vels in m/s
+'../../../data/things_pilot/NGC_3521_RO_MOM1_THINGS.FITS'                           # input velocity field
+None                               # velocity uncertainty map
+1  1  1024 1024                    # region: (xlow,ylow) & (xrange,yrange)
+12.0  339.80  0.703  6 1.5 # regrad, regpa, regeps, istepout, pixscale
+'OUT_3521/disk3521.out'              # output file
+T T T                              # fit PA, eps & center
+339.80  0.703                # initial PA, eps
+505.0  515.9                   # initial center (pix)
+F F 0.0 2                          # non-circular flow OFF (disk-only)
+T F                                # inner interpolation, radial flows
+T 803.5 1.0 25.0              # fit Vsys, initial Vsys, delta_ISM, errtol
+F F F F 90 0 0                     # warp OFF
+0.                                 # seeing correction
+-0.01 -0.01                        # smoothing lambdas
+F -50 200 -1.0   # UNCERTAINTIES: toggle, seed, nboot, junc
+T                                  # verbose
+3.0 0.0                            # min,max radii for noncirc (unused)
+10.0
+20.0
+30.0
+40.0
+50.0
+60.0
+70.0
+80.0
+90.0
+100.0
+110.0
+120.0
+130.0
+140.0
+150.0
+160.0
+170.0
+180.0
+190.0
+200.0
+210.0
+220.0
+230.0
